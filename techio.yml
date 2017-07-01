@@ -2,7 +2,7 @@ title : Node.JS
 
 # Table of contents
 plan:
-  - title: Welcome # Set the page title
+  - title: Destructuring # Set the page title
     statement: markdowns/welcome.md # Set the file path to the page content
 #  - title: Another Page
 #    statement: markdowns/another-page.md
