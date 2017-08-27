@@ -1,5 +1,5 @@
 var assert = require('assert');
-var Point = require('./simple-point.js');
+var Point = require('./simple-point.js').Point;
 
 it('set instance properties correctly', function () {
   try {
