@@ -6,7 +6,7 @@ The bigger difference is that ES2015 constructors _must be called with `new`_. I
 
 ```javascript runnable
 function Component(props) {
-    if (!this instanceof Component) {
+    if (!(this instanceof Component)) {
         return new Component(props);
     }
     this.props = props || {};
