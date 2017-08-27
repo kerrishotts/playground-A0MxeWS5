@@ -84,3 +84,10 @@ console.log(b.render());
 Notice that in line **(A)** we call `Reflect.construct`. This is similar to invoking `apply` on another function -- we can specify the execution context and arguments with `apply`, and with `Reflect.construct` we specify the _constructor_ and the arguments. The difference is that `Reflect.construct` acts as the `new` operator whereas if we tried to use `apply` on a `constructor` the attempt would fail.
 
 Note also that because static methods are inherited, we get `Button.create` for free. The result is the same as if we had used `new Button(props)` but we can do so without having to use `new`.
+
+::: Sources
+
+* [Avoiding New operator in Java Script](https://softwareengineering.stackexchange.com/questions/118798/avoiding-new-operator-in-javascript-the-better-way) (Stack Exchange)
+* [JavaScript Factory Functions vs Constructor Functions vs Classes](https://medium.com/javascript-scene/javascript-factory-functions-vs-constructor-functions-vs-classes-2f22ceddf33e)
+
+:::
