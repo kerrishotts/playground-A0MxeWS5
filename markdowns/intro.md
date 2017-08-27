@@ -1,0 +1,5 @@
+In this article we’re going to discuss the new `class` syntax introduced in ES2015. What we’re _not_ going to discuss is whether or not that syntax was a good idea or not -- I fully understand that there are many within the community who think the syntax was a good idea, and I also fully understand that there are many who think it was the worst mistake ever made. Either way, it’s part of the language, and it is used in various frameworks and the like, so one might as well understand what’s going on, even if one doesn’t like it.
+
+First off, though, remember that JavaScript is not a classical object-oriented language. Instead it uses _prototypal_ inheritance instead of the more classical inheritance most programmers are used to. Of course, this led to many libraries trying to shoehorn classical OOP into a prototypal language (me included; _sigh_), and those attempts were often incompatible with other similar libraries, and it was all just a big mess.
+
+Before we get into the new `class` syntax, though, it's a good idea to revisit how we did classes in ES5. If you're an ES5 expert, feel free to skip on to the following section.
