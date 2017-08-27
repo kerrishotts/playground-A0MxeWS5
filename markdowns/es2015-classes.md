@@ -29,12 +29,8 @@ Now that we have defined a simple class, let's see how we add methods:
 ```javascript runnable
 class Component {
     constructor(props = {}) {
-
-// { autofold
         this.props = props;
         this.state = {};
-// }
-
     }
     
     /* instance method */
@@ -61,7 +57,7 @@ Methods are added within the `class` definition, but note that we don't include 
 
 Methods are instance methods by default unless one adds the `static` keyword. Static methods are similar to, but not exactly like their ES5 equivalent. We'll cover that difference in the next section.
 
-So, now that we've defined a class, how do we create a subclass? Easy -- we create a new `class` and tell it to `extend` from its superclass, like so:
+So, now that we've defined a class, how do we create a subclass? Easy -- we create a new `class` and tell it that it `extends` from its superclass, like so:
 
 ```javascript runnable
 // { autofold
@@ -96,3 +92,48 @@ button.setState({selected: true});
 console.log(button.render());
 ```
 
+There are two very important differences here from the ES5 version:
+
+* We didn't define a `constructor` -- instead, `Button` will inherit its parent's `constructor`. 
+* Static methods are inherited by subclasses -- note `Button.isComponent(button)` evaluates to `true`, wereas ES5 would have complained that `isComponent` wouldn't have been a `function`.
+
+You can override any method (including the constructor) just by defining it in the subclass. Let's do that now:
+
+```javascript runnable
+// { autofold
+class Component {
+    constructor(props = {}) {
+        this.props = props;
+        this.state = {};
+    }
+    
+    setState(newState) {
+        this.state = newState;
+    }
+    
+    static isComponent(candidate) {
+        return candidate && typeof candidate.setState === "function";
+    }
+}
+
+class Button extends Component {
+    render() {
+        const borderChars = this.state.selected ? "><" : "[]";
+        return `${borderChars[0]} ${this.props.title} ${borderChars[1]}`;
+    }
+}
+// }
+
+class BorderedButton extends Button {
+    constructor(props) {
+        super(props);
+        if (!this.props.border) this.props.border = "|";
+    }
+    render() {
+        return `${this.props.border}${super.render()}${this.props.border}`;
+    }
+}
+
+const bb = new BorderedButton({title: "Hello"});
+console.log(bb.render());
+```
