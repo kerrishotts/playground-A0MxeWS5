@@ -24,15 +24,15 @@ function Shape(id, origin) {
 
 /* Static method that returns the next unique number in a sequence */
 Shape.nextUniqueNumber = function nextUniqueNumber() {
-    return Shape._sequence = (Shape._sequence !== undefined ? Shape._sequence + 1 : 0);
+    return (Shape._sequence = (Shape._sequence !== undefined ? Shape._sequence + 1 : 1));
 }
 
 /* Instance method that returns a new version of the shape*/
 Shape.prototype.clone = function clone(newId) {
-    return new Shape(newId || "" + this.id + Shape.nextUniqueNumber(), this.origin);
+    return new Shape(newId || "" + this.id + "_" + Shape.nextUniqueNumber(), this.origin);
 };
 
-var shape = new Shape("aShape0", {x: 5, y: 10});
+var shape = new Shape("aShape", {x: 5, y: 10});
 var anotherShape = shape.clone();
 
 console.log(shape.id, JSON.stringify(shape.origin));
