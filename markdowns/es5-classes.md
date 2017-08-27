@@ -23,7 +23,7 @@ function Shape(id, origin) {
 // }
 
 Shape.prototype.clone = function clone(newId) {
-    return new Shape(newId || "" + this.id + Math.floor(Math.Random() * 100000), this.origin);
+    return new Shape(newId || "" + this.id + Math.floor(Math.random() * 100000), this.origin);
 };
 
 var shape = new Shape("aShape0", {x: 5, y: 10});
