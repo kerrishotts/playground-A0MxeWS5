@@ -50,7 +50,7 @@ This works pretty well _until_ we introduce inheritance. If we want to create a 
 
 There's another ES2015 feature that helps us here, and we'll go over it in more detail some other time, but I can't resist showing this here, since it is so applicable. So, without further ado:
 
-```
+```javascript runnable
 class Component {
     constructor(props = {}) {
         this.props = props;
