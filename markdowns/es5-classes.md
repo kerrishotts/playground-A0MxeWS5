@@ -22,15 +22,15 @@ function Shape(id) {
 }
 // }
 
-Shape.prototype.addPoint(x, y) {
+Shape.prototype.addPoint = function addPoint(x, y) {
     this.points.push({x: x, y: y});
-}
+};
 
-Shape.prototype.addPoints(points) {
+Shape.prototype.addPoints = function addPoints(points) {
     points.forEach((function (point) {
         this.points.push(point);
     }).bind(this));
-}
+};
 
 var shape = new Shape("rect0");
 shape.addPoints([
