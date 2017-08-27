@@ -80,7 +80,7 @@ Let's take a closer look at a couple of lines in the previous snippet. In **(A)*
 
 **(B)** is where we wire up the prototype chain. Without this, `Button` isn't a subclass of anything, and so wouldn't inherit `setState`. Only by wiring up the prototype chain to include the parent will all `Button` instances inherit `setState`. Notice that again we're rigidly defining the hierarchy.
 
-> **Note:** Static methods are not inherited by ES5 subclasses. The reason is simple: static methods aren't part of the prototype chain, and only items within the prototype chain can be inherited.
+> **Note:** Static methods are not inherited by ES5 subclasses. The reason is simple: static methods aren't part of the prototype chain, and only items within the prototype chain can be inherited. As such, we can't call `Button.isComponent`; instead we have to call `Component.isComponent`.
 
 So, how might we override an inherited method? If we don't care about calling the overridden method, we can just assign the method to our subclass's `prototype`. If we _do_ care about calling the overridden method, we have to get creative and call the previous method on the `prototype` chain.
 
@@ -116,14 +116,14 @@ Button.prototype.setState = function setState(newState) {
     console.log("We're setting state to " + JSON.stringify(newState));
     superSetState(newState);
     console.log("Setting state done!");
-}
+};
 
 var button = new Button({title: "Click me!"});
 console.log(Component.isComponent(button));
 console.log(button.render());
 
 button.setState({selected: true});
-console.log(button.render())
+console.log(button.render());
 ```
 
 Notice that in line **(A)** we have to obtain a reference to our parent's `setState` method and then `bind` to _our_ instance (otherwise `this` would be wrong inside the `setState` method). In other OOP languages, you'd be able to call the overridden method pretty simply, and without such a rigidly defined hierarchy.
