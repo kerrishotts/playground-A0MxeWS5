@@ -24,7 +24,7 @@ it("calculates area correctly", function () {
        {w: 12, h: 4},
        {w: 80, h: 97},
        {w: 1, h: 1}
-      ].forEach(({w, h}) => assert(w * h, (new Rect(w, h)).calculateArea()));
+      ].forEach(({w, h}) => assert.equal(w * h, (new Rect(w, h)).calculateArea()));
   } catch (error) {
     printMessage("Hint 💡", "That's not quite right. Area is calculated as width multipled by height. Try that. 🤔");
     throw error;
@@ -39,7 +39,7 @@ it("calculates perimeter correctly", function () {
        {w: 12, h: 4},
        {w: 80, h: 97},
        {w: 1, h: 1}
-      ].forEach(({w, h}) => assert(2 * w + 2 * h, (new Rect(w, h)).calculatePerimeter()));
+      ].forEach(({w, h}) => assert.equal(2 * w + 2 * h, (new Rect(w, h)).calculatePerimeter()));
   } catch (error) {
     printMessage("Hint 💡", "That's not quite right. Perimeter is calculated as twice width plus twice height. Try that. 🤔");
     throw error;
