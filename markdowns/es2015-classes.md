@@ -80,7 +80,7 @@ class Component {
 // }
 
 class Button extends Component {
-    function render() {
+    render() {
         const borderChars = this.state.selected ? "><" : "[]";
         return `${borderChars[0] ${this.props.title} ${borderChars[1]}`;
     }
