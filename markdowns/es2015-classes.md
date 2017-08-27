@@ -29,10 +29,10 @@ Now that we have defined a simple class, let's see how we add methods:
 ```javascript runnable
 class Component {
     constructor(props = {}) {
-// { autofold
+    // { autofold
         this.props = props;
         this.state = {};
-// }
+    // }
     }
     
     /* instance method */
@@ -82,7 +82,7 @@ class Component {
 class Button extends Component {
     function render() {
         const borderChars = this.state.selected ? "><" : "[]";
-        return `${borderChars[0] ${this.props.title} ${borderChars[1]`;
+        return `${borderChars[0] ${this.props.title} ${borderChars[1]}`;
     }
 }
 
