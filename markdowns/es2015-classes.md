@@ -29,10 +29,12 @@ Now that we have defined a simple class, let's see how we add methods:
 ```javascript runnable
 class Component {
     constructor(props = {}) {
-    // { autofold
+
+// { autofold
         this.props = props;
         this.state = {};
-    // }
+// }
+
     }
     
     /* instance method */
