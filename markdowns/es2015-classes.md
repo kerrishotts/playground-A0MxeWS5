@@ -126,14 +126,22 @@ class Button extends Component {
 
 class BorderedButton extends Button {
     constructor(props) {
-        super(props);
+        super(props);                                                       // (A)
         if (!this.props.border) this.props.border = "|";
     }
     render() {
-        return `${this.props.border}${super.render()}${this.props.border}`;
+        return `${this.props.border}${super.render()}${this.props.border}`; // (B)
     }
 }
 
 const bb = new BorderedButton({title: "Hello"});
 console.log(bb.render());
 ```
+
+When overriding a method, ES2015 classes have access to their parent class via `super`. When one overrides a `constructor`, the parent `constructor` is called via `super()`, as in **(A)**. In any other method, one can access the parent's methods via the `super` object as in **(B)**.
+
+> **Important!** You _must_ call `super` before accessing `this` in your constructor or an error will be thrown. Using `super` in any other method isn't a requirement.
+
+What I like about `super` is the fact that you can refer to a parent without rigidly defining the hierarchy. That means you can easily insert classes in between without having to revisit your other classes to change names along the way. That's not to say, of course, that you should build huge hierarchies (since they tend to be brittle for other reasons), but it does make working with whatever hierarchy you have easier.
+
+We've already seen one difference between ES5 and ES2015 (that is, static methods are inherited), so let's go over the rest of the differences in the next section.
