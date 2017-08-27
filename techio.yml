@@ -1,11 +1,15 @@
-title : Node.JS
+title : ES2015 Classes
 
 # Table of contents
 plan:
-  - title: Destructuring # Set the page title
-    statement: markdowns/welcome.md # Set the file path to the page content
-#  - title: Another Page
-#    statement: markdowns/another-page.md
+  - title: Intro # Set the page title
+    statement: markdowns/intro.md # Set the file path to the page content
+  - title: ES5 Refresher
+    statement: markdowns/es5-classes.md
+  - title: Class syntax
+    statement: markdowns/es2015-classes.md
+  - title: Differences
+    statement: markdowns/differences.md
 
 # Settings for your programming projects and the associated Docker images
 projects:
