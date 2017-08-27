@@ -77,7 +77,7 @@ class Button extends Component {
     }
 }
 
-const b = new Button.create({title: "Hello!"});
+const b = Button.create({title: "Hello!"});
 console.log(b.render());
 ```
 
