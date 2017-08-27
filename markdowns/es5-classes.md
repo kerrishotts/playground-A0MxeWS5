@@ -28,7 +28,7 @@ Component.prototype.setState = function setState(newState) {
 /* static method */
 Component.isComponent = function isComponent(candidate) {
     return typeof candidate.setState === "function";
-}
+};
 
 var c = new Component({title: "hello!"});
 console.log(Component.isComponent(c));
@@ -53,11 +53,11 @@ Component.prototype.setState = function setState(newState) {
 
 Component.isComponent = function isComponent(candidate) {
     return typeof candidate.setState === "function";
-}
+};
 // }
 
 function Button(props) {
-    Component.call(this, props);                        // (A)
+    Component.call(this, props);                       // (A)
 }
 
 Button.prototype = Object.create(Component.prototype); // (B)
@@ -75,3 +75,57 @@ console.log(button.render());
 button.setState({selected: true});
 console.log(button.render());
 ```
+
+Let's take a closer look at a couple of lines in the previous snippet. In **(A)**, we're calling the constructor for `Component` -- essentially, we're doing a `super()` call (as you might do in another OOP language). The downside is that the hierarchy is rigidly defined here -- the parent of `Button` will always be `Component`. If we later try to insert something between the two, then we'd have to update the constructor for `Button` as well. Plus, it looks a bit repetitive!
+
+**(B)** is where we wire up the prototype chain. Without this, `Button` isn't a subclass of anything, and so wouldn't inherit `setState`. Only by wiring up the prototype chain to include the parent will all `Button` instances inherit `setState`. Notice that again we're rigidly defining the hierarchy.
+
+> **Note:** Static methods are not inherited by ES5 subclasses. The reason is simple: static methods aren't part of the prototype chain, and only items within the prototype chain can be inherited.
+
+So, how might we override an inherited method? If we don't care about calling the overridden method, we can just assign the method to our subclass's `prototype`. If we _do_ care about calling the overridden method, we have to get creative and call the previous method on the `prototype` chain.
+
+```javascript runnable
+// { autofold
+function Component(props) {
+    this.props = props || {};
+    this.state = {};
+}
+Component.prototype.setState = function setState(newState) {
+    this.state = newState;
+};
+
+Component.isComponent = function isComponent(candidate) {
+    return typeof candidate.setState === "function";
+};
+
+function Button(props) {
+    Component.call(this, props);
+}
+
+Button.prototype = Object.create(Component.prototype);
+Button.prototype.constructor = Component;
+
+Button.prototype.render = function render() {
+    var borderChars = this.state.selected ? "><" : "[]";
+    return borderChars[0] + " " + this.props.title + " " + borderChars[1];
+};
+// }
+
+Button.prototype.setState = function setState(newState) {
+    var superSetState = Component.prototype.setState.bind(this); // (A)
+    console.log("We're setting state to " + JSON.stringify(newState));
+    superSetState(newState);
+    console.log("Setting state done!");
+}
+
+var button = new Button({title: "Click me!"});
+console.log(Component.isComponent(button));
+console.log(button.render());
+
+button.setState({selected: true});
+console.log(button.render())
+```
+
+Notice that in line **(A)** we have to obtain a reference to our parent's `setState` method and then `bind` to _our_ instance (otherwise `this` would be wrong inside the `setState` method). In other OOP languages, you'd be able to call the overridden method pretty simply, and without such a rigidly defined hierarchy.
+
+Now that we've seen how things worked in ES5, let's see the new syntax.
