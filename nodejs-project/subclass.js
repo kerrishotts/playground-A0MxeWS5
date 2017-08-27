@@ -11,10 +11,11 @@ class Rect {
 }
 // }
 
-class Square { // extend the Rect class (expand the above if needed) so that 
-               // the constructor can accept a single argument (length), but
-               // still calculates the area correctly (you should not need
-               // to override `calculateArea`).
+class Square { 
+    // extend the Rect class (expand the above if needed) so that 
+    // the constructor can accept a single argument (length), but
+    // still calculates the area correctly (you should not need
+    // to override `calculateArea`).
 }
 
 // { autofold
@@ -22,3 +23,4 @@ module.exports = {
     Rect,
     Square
 }
+// }
