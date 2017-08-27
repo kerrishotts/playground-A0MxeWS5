@@ -10,6 +10,8 @@ plan:
     statement: markdowns/es2015-classes.md
   - title: Differences
     statement: markdowns/differences.md
+  - title: Test your Comprehension
+    statement: markdowns/test.md
 
 # Settings for your programming projects and the associated Docker images
 projects:
