@@ -3,7 +3,7 @@ const {Rect, Square} = require("./subclass.js");
 
 it("has a calculateArea method", function () {
   try {
-    assert.equal("function", (new Square()).calculateArea);
+    assert.equal("function", typeof (new Square()).calculateArea);
   } catch (error) {
     printMessage("Hint 💡", "Missing the calculateArea function... did you forget `extends`? 🤔");
     throw error;    
