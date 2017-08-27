@@ -1,4 +1,4 @@
-In ES5, a class was defined using a **class function**. For example:
+In ES5, a class is defined using a **class function**. For example:
 
 ```javascript runnable
 function Component(props) {
@@ -80,7 +80,7 @@ Let's take a closer look at a couple of lines in the previous snippet. In **(A)*
 
 **(B)** is where we wire up the prototype chain. Without this, `Button` isn't a subclass of anything, and so wouldn't inherit `setState`. Only by wiring up the prototype chain to include the parent will all `Button` instances inherit `setState`. Notice that again we're rigidly defining the hierarchy.
 
-> **Note:** Static methods are not inherited by ES5 subclasses. The reason is simple: static methods aren't part of the prototype chain, and only items within the prototype chain can be inherited. As such, we can't call `Button.isComponent`; instead we have to call `Component.isComponent`.
+> **Note:** Static methods are not inherited by ES5 subclasses. As such, we can't call `Button.isComponent`; instead we have to call `Component.isComponent`.
 
 So, how might we override an inherited method? If we don't care about calling the overridden method, we can just assign the method to our subclass's `prototype`. If we _do_ care about calling the overridden method, we have to get creative and call the previous method on the `prototype` chain.
 
@@ -129,3 +129,10 @@ console.log(button.render());
 Notice that in line **(A)** we have to obtain a reference to our parent's `setState` method and then `bind` to _our_ instance (otherwise `this` would be wrong inside the `setState` method). In other OOP languages, you'd be able to call the overridden method pretty simply, and without such a rigidly defined hierarchy.
 
 Now that we've seen how things worked in ES5, let's see the new syntax.
+
+::: Sources
+
+* [Classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes) on MDN
+* [Classes in ECMAScript 6](http://2ality.com/2015/02/es6-classes-final.html) by 2ality
+
+:::
