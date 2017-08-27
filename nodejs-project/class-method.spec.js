@@ -41,7 +41,7 @@ it("calculates perimeter correctly", function () {
        {w: 1, h: 1}
       ].forEach(({w, h}) => assert(2 * w + 2 * h, Rect.calculatePerimeter(w, h)));
   } catch (error) {
-    printMessage("Hint 💡", "That's not quite right. Perimeter is calculated as twice width plus twise height. Try that. 🤔");
+    printMessage("Hint 💡", "That's not quite right. Perimeter is calculated as twice width plus twice height. Try that. 🤔");
     throw error;
   }
 });
